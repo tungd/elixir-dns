@@ -2,13 +2,14 @@
 
 DNS library for Elixir. Currently, the package provides:
 
-- Elixir structs to interface with `inet_dns` module.
+- Elixir structs to interface with [`dns_erlang`][dns_erlang] module.
 - DNS.Server behavior
 - DNS.Client
 
-Note: the `inet_dns` module is considered internal to Erlang and subject to
-change. If this happened this library will be updated to accommodate for that,
-but for now `inet_dns` is simple and worked for me.
+Note: There's `inet_dns` module included in Erlang distribution. If you want to
+use it (for example: reduce the code size), please use
+`elixir_inet_dns`. However, please note that `inet_dns` is considered internal
+to Erlang and subject to change.
 
 ## Installation
 
@@ -25,3 +26,5 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
         def application do
           [applications: [:dns]]
         end
+
+[dns_erlang]: https://github.com/aetrion/dns_erlang/blob/master/include/dns_records.hrl
