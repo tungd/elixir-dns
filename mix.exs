@@ -18,7 +18,9 @@ defmodule DNS.Mixfile do
 
   defp deps do
     # TODO: switch back to published `socket` once the PR is merged
-    [{:socket, github: "tungd/elixir-socket", branch: "fix/elixir-1-2"}]
+    [{:socket, github: "tungd/elixir-socket", branch: "fix/elixir-1-2"},
+     {:ex_doc, ">= 0.0.0", only: [:dev]},
+     {:earmark, ">= 0.0.0", only: [:dev]}]
   end
 
   defp description do
