@@ -8,7 +8,7 @@ defmodule DNS.Record do
   vals   = :lists.map(&{&1, [], nil}, keys)
   pairs  = :lists.zip(keys, vals)
 
-  defstruct keys
+  defstruct record
   @type t :: %__MODULE__{}
 
   @doc """
@@ -16,8 +16,8 @@ defmodule DNS.Record do
   """
   def to_record(struct) do
     header = DNS.Header.to_record(struct.header)
-    queries = Enum.map(struct.qdlist, &DNS.Query.to_record(&1))
-    answers = Enum.map(struct.anlist, &DNS.Resource.to_record(&1))
+    queries = Enum.map(struct.qdlist, &DNS.Query.to_record/1)
+    answers = Enum.map(struct.anlist, &DNS.Resource.to_record/1)
 
     _to_record(%{struct | header: header, qdlist: queries, anlist: answers})
   end
@@ -43,7 +43,7 @@ defmodule DNS.Record do
   # TODO: docs
   def decode(data) do
     {:ok, record} = :inet_dns.decode(data)
-    record
+    from_record(record)
   end
 
   # TODO: docs

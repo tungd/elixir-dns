@@ -8,7 +8,7 @@ defmodule DNS.Resource do
   vals   = :lists.map(&{&1, [], nil}, keys)
   pairs  = :lists.zip(keys, vals)
 
-  defstruct keys
+  defstruct record
   @type t :: %__MODULE__{}
 
   @doc """
