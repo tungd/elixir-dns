@@ -1,0 +1,1 @@
+%{"socket": {:git, "https://github.com/tungd/elixir-socket.git", "313f7de8293bea9b18f21047da03abc471bde420", [branch: "fix/elixir-1-2"]}}
