@@ -1,0 +1,2 @@
+defmodule Dns do
+end
