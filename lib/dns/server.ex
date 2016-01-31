@@ -1,36 +1,29 @@
 defmodule DNS.Server do
   @moduledoc """
   TODO: docs
+  TODO: convert this to a `GenServer` and do proper cleanup
   """
 
-  @callback handle(DNS.Record) :: DNS.Record
+  @callback handle(DNS.Record.t, {:inet.ip, :inet.port}) :: DNS.Record.t
 
-  def start(port) do
+  @doc """
+  TODO: docs
+  """
+  @spec accept(:inet.port, DNS.Server) :: no_return
+  def accept(port, handler) do
+    socket = Socket.UDP.open!(port)
     IO.puts "Server listening at #{port}"
 
-    # TODO: see options
-    server = Socket.UDP.open!(port)
-    {data, client} = server |> Socket.Datagram.recv!
+    accept_loop(socket, handler)
+  end
+
+  defp accept_loop(socket, handler) do
+    {data, client} = Socket.Datagram.recv!(socket)
 
     record = DNS.Record.decode(data)
+    response = handler.handle(record, client)
+    Socket.Datagram.send!(socket, DNS.Record.encode(response), client)
 
-    # if !record.header.qr do
-      IO.puts inspect(client)
-      IO.puts inspect(record)
-
-      [query | _] = record.qdlist
-      resource = %DNS.Resource{
-        domain: query.domain,
-        class: query.class,
-        type: query.type,
-        ttl: 0,
-        data: {127, 0, 0, 1}
-      }
-      response = %{record | anlist: [resource]}
-
-      server |> Socket.Datagram.send!(DNS.Record.encode(response), client)
-    # end
-
-    # server |> Socket.Datagram.send!(data, client)
+    accept_loop(socket, handler)
   end
 end
