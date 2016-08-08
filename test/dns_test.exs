@@ -4,7 +4,7 @@ defmodule DNSTest do
 
   test "#resolve" do
     actual = DNS.resolve("tungdao.com", {"freedns1.registrar-servers.com", 53})
-    assert {128, 199, 109, 154} = actual
+    assert {139, 59, 247, 174} = actual
   end
 
   test "#query" do

@@ -3,8 +3,8 @@ defmodule DNS.Mixfile do
 
   def project do
     [app: :dns,
-     version: "0.0.3",
-     elixir: "~> 1.2",
+     version: "0.0.4",
+     elixir: "~> 1.2 or ~> 1.3",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      description: description,
@@ -18,7 +18,7 @@ defmodule DNS.Mixfile do
 
   defp deps do
     # TODO: switch back to published `socket` once the PR is merged
-    [{:socket, github: "tungd/elixir-socket", branch: "fix/elixir-1-2"},
+    [{:socket, "~> 0.3.5"},
      {:ex_doc, ">= 0.0.0", only: [:dev]},
      {:earmark, ">= 0.0.0", only: [:dev]}]
   end
@@ -28,7 +28,9 @@ defmodule DNS.Mixfile do
   DNS library for Elixir. Currently, the package provides:
 
   - Elixir structs to interface with `inet_dns` module.
+
   - DNS.Server behavior
+
   - DNS.Client
 
   Note: the `inet_dns` module is considered internal to Erlang and subject to
