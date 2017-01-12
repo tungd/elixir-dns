@@ -21,7 +21,7 @@ defmodule DNS do
       qdlist: [%DNS.Query{domain: to_char_list(domain), type: :a, class: :in}]
     }
 
-    client = Socket.UDP.open!(0, [:binary])
+    client = Socket.UDP.open!(0)
 
     send!(client, DNS.Record.encode(record), dns_server)
 
