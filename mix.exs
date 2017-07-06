@@ -23,17 +23,10 @@ defmodule DNS.Mixfile do
 
   defp description do
   """
-  DNS library for Elixir. Currently, the package provides:
+  DNS library for Elixir using `inet_dns` module.
 
-  - Elixir structs to interface with `inet_dns` module.
-
-  - DNS.Server behavior
-
-  - DNS.Client
-
-  Note: the `inet_dns` module is considered internal to Erlang and subject to
-  change. If this happened this library will be updated to accommodate for that,
-  but for now `inet_dns` is simple and worked for me.
+  Note: The `inet_dns` module is considered internal to Erlang and subject to
+  change. If this happened this library will be updated.
   """
   end
 
