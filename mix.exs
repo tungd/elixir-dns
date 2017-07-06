@@ -4,7 +4,6 @@ defmodule DNS.Mixfile do
   def project do
     [app: :dns,
      version: "0.1.0",
-     elixir: "~> 1.2 or ~> 1.3",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      description: description(),
@@ -17,7 +16,6 @@ defmodule DNS.Mixfile do
   end
 
   defp deps do
-    # TODO: switch back to published `socket` once the PR is merged
     [{:socket, "~> 0.3.12"},
      {:ex_doc, ">= 0.0.0", only: [:dev]},
      {:earmark, ">= 0.0.0", only: [:dev]}]
@@ -43,6 +41,6 @@ defmodule DNS.Mixfile do
     [maintainers: ["Tung Dao"],
      licenses: ["BSD-3-Clauses"],
      links: %{"GitHub" => "https://github.com/tungd/elixir-dns",
-              "API Reference" => "http://hexdocs.pm/dns/0.0.3/api-reference.html"}]
+              "API Reference" => "http://hexdocs.pm/dns/0.1.0/api-reference.html"}]
   end
 end
