@@ -3,7 +3,7 @@ defmodule DNS.Mixfile do
 
   def project do
     [app: :dns,
-     version: "0.0.4",
+     version: "0.1.0",
      elixir: "~> 1.2 or ~> 1.3",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
@@ -18,7 +18,7 @@ defmodule DNS.Mixfile do
 
   defp deps do
     # TODO: switch back to published `socket` once the PR is merged
-    [{:socket, "~> 0.3.5"},
+    [{:socket, "~> 0.3.12"},
      {:ex_doc, ">= 0.0.0", only: [:dev]},
      {:earmark, ">= 0.0.0", only: [:dev]}]
   end
