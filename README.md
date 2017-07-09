@@ -16,15 +16,19 @@ The package is available in [Hex](https://hex.pm) and can be installed as:
 
   1. Add dns to your list of dependencies in `mix.exs`:
 
+        ```elixir
         def deps do
           [{:dns, "~> 0.0.3"}]
         end
+        ```
 
   2. Ensure dns is started before your application:
 
+        ```elixir
         def application do
           [applications: [:dns]]
         end
+        ```
 
 ## Usage
 
@@ -69,12 +73,19 @@ defmodule TestServer do
   def handle(record, {ip, _}) do
     query = hd(record.qdlist)
 
+    result = case query.type do
+      :a -> {127, 0, 0, 1}
+      :cname -> 'your.domain.com'
+      :txt -> ['your txt value']
+      _ -> nil
+    end
+
     resource = %DNS.Resource{
       domain: query.domain,
       class: query.class,
       type: query.type,
       ttl: 0,
-      data: {127, 0, 0, 1}
+      data: result
     }
 
     %{record | anlist: [resource]}
