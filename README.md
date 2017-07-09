@@ -1,4 +1,5 @@
 # DNS
+![](https://img.shields.io/hexpm/v/dns.svg)
 
 DNS library for Elixir. Currently, the package provides:
 
