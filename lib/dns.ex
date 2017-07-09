@@ -7,8 +7,17 @@ defmodule DNS do
   """
   @spec resolve(char_list | char_list, { String.t, :inet.port }) :: :inet.ip
   def resolve(domain, dns_server \\ { "8.8.8.8", 53 }) do
-    [ answer | _ ] = query(domain, dns_server).anlist
-    answer.data
+    case query(domain, dns_server).anlist do
+      answers when is_list(answers) and length(answers) > 0 ->
+        data =
+          answers
+          |> Enum.map(&(&1.data))
+          |> Enum.reject(&is_nil/1)
+
+        {:ok, data}
+      _ ->
+        {:error, :not_found}
+    end
   end
 
   @doc """
