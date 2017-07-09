@@ -5,7 +5,7 @@ defmodule DNS do
   TODO: docs
   TODO: handle errors
   """
-  @spec resolve(char_list | char_list, { String.t, :inet.port }) :: :inet.ip
+  @spec resolve(char_list | char_list, { String.t, :inet.port }) :: {atom, :inet.ip} | {atom, atom}
   def resolve(domain, dns_server \\ { "8.8.8.8", 53 }) do
     case query(domain, dns_server).anlist do
       answers when is_list(answers) and length(answers) > 0 ->
