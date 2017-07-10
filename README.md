@@ -1,5 +1,5 @@
 # DNS
-![](https://img.shields.io/hexpm/v/dns.svg)
+![https://hex.pm/packages/dns](https://img.shields.io/hexpm/v/dns.svg)
 
 DNS library for Elixir. Currently, the package provides:
 
@@ -97,7 +97,7 @@ defmodule TestServer do
 end
 ```
 
-For more information, see [API Reference](http://hexdocs.pm/dns/0.0.3/api-reference.html)
+For more information, see [API Reference](https://hexdocs.pm/dns/1.0.1/api-reference.html)
 
 ## License
 
