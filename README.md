@@ -32,7 +32,10 @@ The package is available in [Hex](https://hex.pm) and can be installed as:
 
 ```elixir
 iex> DNS.resolve("google.com")
-{216, 58, 221, 110}
+{:ok, [{216, 58, 221, 110}]}
+
+iex> DNS.resolve("notfound.domain")
+{:error, :not_found}
 
 iex> DNS.query("google.com")
 %DNS.Record{anlist: [%DNS.Resource{bm: [], class: :in, cnt: 0,
