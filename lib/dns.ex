@@ -17,7 +17,7 @@ defmodule DNS do
   @spec query(char_list | char_list, { String.t, :inet.port }) :: DNS.Record.t
   def query(domain, dns_server \\ { "8.8.8.8", 53 }) do
     record = %DNS.Record{
-      header: %DNS.Header{},
+      header: %DNS.Header{rd: true},
       qdlist: [%DNS.Query{domain: to_char_list(domain), type: :a, class: :in}]
     }
 
