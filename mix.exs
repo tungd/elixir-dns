@@ -3,7 +3,7 @@ defmodule DNS.Mixfile do
 
   def project do
     [app: :dns,
-     version: "0.1.0",
+     version: "1.0.0",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      description: description(),
@@ -34,6 +34,6 @@ defmodule DNS.Mixfile do
     [maintainers: ["Tung Dao"],
      licenses: ["BSD-3-Clauses"],
      links: %{"GitHub" => "https://github.com/tungd/elixir-dns",
-              "API Reference" => "http://hexdocs.pm/dns/0.1.0/api-reference.html"}]
+              "API Reference" => "http://hexdocs.pm/dns/1.0.0/api-reference.html"}]
   end
 end
