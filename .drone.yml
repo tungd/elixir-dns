@@ -1,13 +1,13 @@
 pipeline:
   build:
-    image: elixir:1.6
+    image: elixir:${ELIXIR_VERSION}
     commands:
       - mix local.hex --force
       - mix deps.get
       - mix test
     volumes:
-      - ~/.mix
-      - _build
+      - /tmp/elixir-dns-.mix:/root/.mix
+      - /tmp/elixir-dns-_build:/_build
 
 matrix:
   ELIXIR_VERSION:
