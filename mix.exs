@@ -41,7 +41,7 @@ defmodule DNS.Mixfile do
       licenses: ["BSD-3-Clauses"],
       links: %{
         "GitHub" => "https://github.com/tungd/elixir-dns",
-        "API Reference" => "http://hexdocs.pm/dns/1.0.1/api-reference.html"
+        "API Reference" => "http://hexdocs.pm/dns/2.1.0/api-reference.html"
       }
     ]
   end
