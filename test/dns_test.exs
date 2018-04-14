@@ -22,24 +22,24 @@ defmodule DNSTest do
   end
 
   describe "query" do
-    test "builds a DNS Record" do
-      assert %DNS.Record{
-               anlist: [%DNS.Resource{}],
-               arlist: [],
-               header: %DNS.Header{},
-               nslist: [],
-               qdlist: [%DNS.Query{}]
-             } = DNS.query('tungdao.com')
-    end
+    # test "builds a DNS Record" do
+    #   assert %DNS.Record{
+    #            anlist: [%DNS.Resource{}],
+    #            arlist: [],
+    #            header: %DNS.Header{},
+    #            nslist: [],
+    #            qdlist: [%DNS.Query{}]
+    #          } = DNS.query('tungdao.com')
+    # end
 
-    test "queries different record types" do
-      assert %DNS.Record{
-               anlist: [%DNS.Resource{}],
-               arlist: [],
-               header: %DNS.Header{},
-               nslist: [],
-               qdlist: [%DNS.Query{}]
-             } = DNS.query('tungdao.com', :txt)
-    end
+    # test "queries different record types" do
+    #   assert %DNS.Record{
+    #            anlist: [%DNS.Resource{}],
+    #            arlist: [],
+    #            header: %DNS.Header{},
+    #            nslist: [],
+    #            qdlist: [%DNS.Query{}]
+    #          } = DNS.query('tungdao.com', :txt)
+    # end
   end
 end
