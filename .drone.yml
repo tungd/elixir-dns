@@ -1,10 +1,12 @@
 pipeline:
   build:
-    image: "elixir:${ELIXIR_VERSION}"
+    image: elixir:1.6
     commands:
+      - mix local.hex --force
       - mix deps.get
       - mix test
     volumes:
+      - ~/.mix
       - _build
 
 matrix:
