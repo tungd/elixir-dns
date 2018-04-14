@@ -57,32 +57,24 @@ iex> DNS.resolve("google.com", {"8.8.8.8", 53})
 ### DNS server
 
 ```elixir
-defmodule TestServer do
-  use Application
-
+defmodule ServerExample do
+  @moduledoc """
+  Example implementing DNS.Server behaviour
+  """
   @behaviour DNS.Server
+  use DNS.Server
 
-  def start(_args, _opts) do
-    import Supervisor.Spec, warn: false
-
-    port = Application.get_env(:dns, :server)[:port]
-    children = [
-      worker(Task, [DNS.Server, :accept, [port, __MODULE__]])
-    ]
-
-    opts = [strategy: :one_for_one, name: DNS.Server.Supervisor]
-    Supervisor.start_link(children, opts)
-  end
-
-  def handle(record, {ip, _}) do
+  def handle(record, _cl) do
+    Logger.info(fn -> "#{inspect(record)}" end)
     query = hd(record.qdlist)
 
-    result = case query.type do
-      :a -> {127, 0, 0, 1}
-      :cname -> 'your.domain.com'
-      :txt -> ['your txt value']
-      _ -> nil
-    end
+    result =
+      case query.type do
+        :a -> {127, 0, 0, 1}
+        :cname -> 'your.domain.com'
+        :txt -> ['your txt value']
+        _ -> nil
+      end
 
     resource = %DNS.Resource{
       domain: query.domain,
@@ -95,6 +87,8 @@ defmodule TestServer do
     %{record | anlist: [resource]}
   end
 end
+# To create a server
+{:ok, server_pid} = ServerExample.start_link 8000
 ```
 
 For more information, see [API Reference](https://hexdocs.pm/dns/1.0.1/api-reference.html)

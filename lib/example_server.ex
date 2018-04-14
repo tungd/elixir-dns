@@ -2,9 +2,9 @@ defmodule ServerExample do
   @moduledoc """
   Example implementing DNS.Server behaviour
   """
+  require Logger
   @behaviour DNS.Server
   use DNS.Server
-  require Logger
 
   def handle(record, _cl) do
     Logger.info(fn -> "#{inspect(record)}" end)
