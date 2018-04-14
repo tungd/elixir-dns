@@ -1,0 +1,14 @@
+pipeline:
+  build:
+    image: "elixir:${ELIXIR_VERSION}"
+    commands:
+      - mix deps.get
+      - mix test
+    volumes:
+      - _build
+
+matrix:
+  ELIXIR_VERSION:
+    - 1.4
+    - 1.5
+    - 1.6
