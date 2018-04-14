@@ -4,26 +4,33 @@ defmodule DNS.Server do
   TODO: convert this to a `GenServer` and do proper cleanup
   """
 
-  @callback handle(DNS.Record.t, {:inet.ip, :inet.port}) :: DNS.Record.t
+  @callback handle(DNS.Record.t(), {:inet.ip(), :inet.port()}) :: DNS.Record.t()
 
-  @doc """
-  TODO: docs
-  """
-  @spec accept(:inet.port, DNS.Server) :: no_return
-  def accept(port, handler) do
-    socket = Socket.UDP.open!(port)
-    IO.puts "Server listening at #{port}"
+  defmacro __using__(_) do
+    quote [] do
+      use GenServer
 
-    accept_loop(socket, handler)
-  end
+      @doc """
+      TODO: docs
+      """
+      def start_link(port) do
+        GenServer.start_link(__MODULE__, [port])
+      end
 
-  defp accept_loop(socket, handler) do
-    {data, client} = Socket.Datagram.recv!(socket)
+      def init([port]) do
+        socket = Socket.UDP.open!(port, as: :binary, mode: :active)
+        IO.puts("Server listening at #{port}")
 
-    record = DNS.Record.decode(data)
-    response = handler.handle(record, client)
-    Socket.Datagram.send!(socket, DNS.Record.encode(response), client)
+        # accept_loop(socket, handler)
+        {:ok, %{port: port, socket: socket}}
+      end
 
-    accept_loop(socket, handler)
+      def handle_info({:udp, client, ip, wtv, data}, state) do
+        record = DNS.Record.decode(data)
+        response = handle(record, client)
+        Socket.Datagram.send!(state.socket, DNS.Record.encode(response), {ip, wtv})
+        {:noreply, state}
+      end
+    end
   end
 end
