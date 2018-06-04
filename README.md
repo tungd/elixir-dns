@@ -15,7 +15,12 @@ but for now `inet_dns` is simple and worked for me.
 
 The package is available in [Hex](https://hex.pm) and can be installed as:
 
-  1. Add dns to your list of dependencies in `mix.exs`:
+  1. Make sure you have the Erlang/OTP source files installed,
+     otherwise the compilation will fail with an `{:error, :enoent}`
+     message. On Ubuntu, this can be done using `apt-get install
+     erlang-src`.
+
+  2. Add dns to your list of dependencies in `mix.exs`:
 
         ```elixir
         def deps do
@@ -23,7 +28,7 @@ The package is available in [Hex](https://hex.pm) and can be installed as:
         end
         ```
 
-  2. Ensure dns is started before your application:
+  3. Ensure dns is started before your application:
 
         ```elixir
         def application do
