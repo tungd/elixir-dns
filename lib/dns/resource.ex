@@ -26,4 +26,6 @@ defmodule DNS.Resource do
   def from_record({:dns_rr, unquote_splicing(vals)}) do
     %DNS.Resource{unquote_splicing(pairs)}
   end
+
+  def from_record(_), do: nil
 end

@@ -37,6 +37,7 @@ defmodule DNS.Record do
     header = DNS.Header.from_record(struct.header)
     queries = Enum.map(struct.qdlist, &DNS.Query.from_record(&1))
     answers = Enum.map(struct.anlist, &DNS.Resource.from_record(&1))
+        |> Enum.reject(&is_nil/1)
 
     %{struct | header: header, qdlist: queries, anlist: answers}
   end
