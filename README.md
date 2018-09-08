@@ -1,4 +1,5 @@
 # DNS
+![https://hex.pm/packages/dns](https://img.shields.io/hexpm/v/dns.svg)
 [![Build Status](https://travis-ci.org/tungd/elixir-dns.svg?branch=master)](https://travis-ci.org/tungd/elixir-dns)
 
 DNS library for Elixir. Currently, the package provides:
