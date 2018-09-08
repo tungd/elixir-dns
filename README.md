@@ -24,7 +24,7 @@ The package is available in [Hex](https://hex.pm) and can be installed as:
 
         ```elixir
         def deps do
-          [{:dns, "~> 2.1.0"}]
+          [{:dns, "~> 2.1.1"}]
         end
         ```
 
