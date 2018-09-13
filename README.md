@@ -30,14 +30,6 @@ The package is available in [Hex](https://hex.pm) and can be installed as:
         end
         ```
 
-  3. Ensure dns is started before your application:
-
-        ```elixir
-        def application do
-          [applications: [:dns]]
-        end
-        ```
-
 ## Usage
 
 ### DNS client
