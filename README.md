@@ -26,7 +26,7 @@ The package is available in [Hex](https://hex.pm) and can be installed as:
 
         ```elixir
         def deps do
-          [{:dns, "~> 2.1.1"}]
+          [{:dns, "~> 2.1.2"}]
         end
         ```
 
@@ -90,7 +90,7 @@ end
 {:ok, server_pid} = ServerExample.start_link 8000
 ```
 
-For more information, see [API Reference](https://hexdocs.pm/dns/2.1.0/api-reference.html)
+For more information, see [API Reference](https://hexdocs.pm/dns/2.1.2/api-reference.html)
 
 ## License
 
