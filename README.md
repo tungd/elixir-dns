@@ -83,7 +83,7 @@ defmodule ServerExample do
       data: result
     }
 
-    %{record | anlist: [resource]}
+    %{record | anlist: [resource], header: %{record.header | qr: true}}
   end
 end
 # To create a server
