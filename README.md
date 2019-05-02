@@ -86,8 +86,17 @@ defmodule ServerExample do
     %{record | anlist: [resource], header: %{record.header | qr: true}}
   end
 end
-# To create a server
-{:ok, server_pid} = ServerExample.start_link 8000
+```
+
+To run the example server in `iex`:
+
+```
+iex(1)> c "example/test_server.ex"
+[ServerExample]
+iex(2)> {:ok, server_pid} = ServerExample.start_link 8000
+Server listening at 8000
+{:ok, #PID<0.180.0>}
+iex(3)> Process.exit(server_pid, :normal)
 ```
 
 For more information, see [API Reference](https://hexdocs.pm/dns/2.1.2/api-reference.html)
