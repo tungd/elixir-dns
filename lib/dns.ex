@@ -46,6 +46,8 @@ defmodule DNS do
     send!(client, DNS.Record.encode(record), dns_server)
 
     {data, _server} = recv!(client)
+
+    :gen_udp.close(client)
     DNS.Record.decode(data)
   end
 end
