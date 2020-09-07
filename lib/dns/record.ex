@@ -18,8 +18,9 @@ defmodule DNS.Record do
     header = DNS.Header.to_record(struct.header)
     queries = Enum.map(struct.qdlist, &DNS.Query.to_record/1)
     answers = Enum.map(struct.anlist, &DNS.Resource.to_record/1)
+    additional = Enum.map(struct.arlist, &DNS.Resource.to_record/1)
 
-    _to_record(%{struct | header: header, qdlist: queries, anlist: answers})
+    _to_record(%{struct | header: header, qdlist: queries, anlist: answers, arlist: additional})
   end
 
   defp _to_record(%DNS.Record{unquote_splicing(pairs)}) do
@@ -36,10 +37,16 @@ defmodule DNS.Record do
 
     header = DNS.Header.from_record(struct.header)
     queries = Enum.map(struct.qdlist, &DNS.Query.from_record(&1))
-    answers = Enum.map(struct.anlist, &DNS.Resource.from_record(&1))
-        |> Enum.reject(&is_nil/1)
 
-    %{struct | header: header, qdlist: queries, anlist: answers}
+    answers =
+      Enum.map(struct.anlist, &DNS.Resource.from_record(&1))
+      |> Enum.reject(&is_nil/1)
+
+    additional =
+      Enum.map(struct.arlist, &DNS.Resource.from_record(&1))
+      |> Enum.reject(&is_nil/1)
+
+    %{struct | header: header, qdlist: queries, anlist: answers, arlist: additional}
   end
 
   # TODO: docs
