@@ -1,5 +1,5 @@
 defmodule DNS do
-  import Socket.Datagram, only: [send!: 3, recv!: 1]
+  import Socket.Datagram, only: [send!: 3, recv!: 2]
 
   @doc """
   Resolves the answer for a DNS query
@@ -45,7 +45,7 @@ defmodule DNS do
 
     send!(client, DNS.Record.encode(record), dns_server)
 
-    {data, _server} = recv!(client)
+    {data, _server} = recv!(client, [{:timeout, 5_000}])
 
     :gen_udp.close(client)
     DNS.Record.decode(data)
