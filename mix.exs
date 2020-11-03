@@ -4,7 +4,7 @@ defmodule DNS.Mixfile do
   def project do
     [
       app: :dns,
-      version: "2.1.3",
+      version: "2.1.4",
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
       description: description(),
