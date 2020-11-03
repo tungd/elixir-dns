@@ -1,3 +1,8 @@
+# psudo-RR type OPT - https://en.wikipedia.org/wiki/Extension_mechanisms_for_DNS#mechanism
+defmodule DNS.ResourceOpt do 
+  defstruct Record.extract(:dns_rr_opt, from_lib: "kernel/src/inet_dns.hrl")
+end
+
 defmodule DNS.Resource do
   @moduledoc """
   TODO: docs
@@ -44,9 +49,4 @@ defmodule DNS.Resource do
   defp _from_record({:dns_rr, unquote_splicing(vals)}) do
     %DNS.Resource{unquote_splicing(pairs)}
   end
-end
-
-# psudo-RR type OPT - https://en.wikipedia.org/wiki/Extension_mechanisms_for_DNS#mechanism
-defmodule DNS.ResourceOpt do 
-  defstruct Record.extract(:dns_rr_opt, from_lib: "kernel/src/inet_dns.hrl")
 end
