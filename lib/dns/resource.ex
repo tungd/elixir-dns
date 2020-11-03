@@ -1,3 +1,7 @@
+defmodule DNS.ResourceOpt do 
+  defstruct Record.extract(:dns_rr_opt, from_lib: "kernel/src/inet_dns.hrl")
+end
+
 defmodule DNS.Resource do
   @moduledoc """
   TODO: docs
