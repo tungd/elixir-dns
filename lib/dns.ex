@@ -8,7 +8,7 @@ defmodule DNS do
       iex> DNS.resolve("tungdao.com", :txt)                # {:ok, [['v=spf1 a mx ~all']]}
       iex> DNS.resolve("tungdao.com", :a, {"8.8.8.8", 53}) # {:ok, [{1, 1, 1, 1}]}
   """
-  @spec resolve(String.t, atom, {String.t, :inet.port}) :: {atom, :inet.ip} | {atom, list} | {atom, atom}
+  @spec resolve(String.t, atom, {String.t, :inet.port}, :tcp | :udp) :: {atom, :inet.ip} | {atom, list} | {atom, atom}
   def resolve(domain, type \\ :a, dns_server \\ {"8.8.8.8", 53}, proto \\ :udp) do
     case query(domain, type, dns_server, proto).anlist do
       answers when is_list(answers) and length(answers) > 0 ->
