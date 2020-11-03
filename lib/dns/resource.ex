@@ -45,3 +45,8 @@ defmodule DNS.Resource do
     %DNS.Resource{unquote_splicing(pairs)}
   end
 end
+
+# psudo-RR type OPT - https://en.wikipedia.org/wiki/Extension_mechanisms_for_DNS#mechanism
+defmodule DNS.ResourceOpt do 
+  defstruct Record.extract(:dns_rr_opt, from_lib: "kernel/src/inet_dns.hrl")
+end
