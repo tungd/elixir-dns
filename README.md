@@ -99,6 +99,13 @@ Server listening at 8000
 iex(3)> Process.exit(server_pid, :normal)
 ```
 
+### DOH client
+
+```elixir
+iex> DOH.resolve("www.google.com")
+{:ok, [{172, 217, 13, 228}]}
+```
+
 For more information, see [API Reference](https://hexdocs.pm/dns/2.1.2/api-reference.html)
 
 ## License

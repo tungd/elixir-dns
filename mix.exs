@@ -22,7 +22,8 @@ defmodule DNS.Mixfile do
       {:socket, "~> 0.3.13"},
       {:ex_doc, ">= 0.0.0", only: [:dev]},
       {:earmark, ">= 0.0.0", only: [:dev]},
-      {:credo, "~> 0.9.0-rc1", only: [:dev, :test], runtime: false}
+      {:credo, "~> 0.9.0-rc1", only: [:dev, :test], runtime: false},
+      {:httpoison, "~> 1.6"},
     ]
   end
 
