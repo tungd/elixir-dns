@@ -58,17 +58,13 @@ defmodule DNS do
           data
 
         :tcp ->
-          socket = Socket.TCP.connect! dns_server, timeout: 5_000
+          # Set our packet mode to be 2, which indicates there is a 2 byte, big endian length field on our
+          # packets sent and recv'd
+          socket = Socket.TCP.connect! dns_server, timeout: 5_000, packet: 2
 
-          # Add our 2 byte length header (big endian) per https://tools.ietf.org/html/rfc1035#section-4.2.2
-          tcp_packet = << byte_size(encoded_record) :: 16 >> <> encoded_record
+          :ok = Socket.Stream.send(socket, encoded_record)
 
-          :ok = Socket.Stream.send(socket, tcp_packet)
-
-          # Parse out our length header, and only return that number of bytes to be RFC compliant
-          << recv_size :: integer-16,
-             data      :: binary - size(recv_size)
-             >> = Socket.Stream.recv!(socket)
+          data = Socket.Stream.recv!(socket)
 
           Socket.Stream.close! socket
 
