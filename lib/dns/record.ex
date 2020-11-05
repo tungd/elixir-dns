@@ -1,6 +1,6 @@
 defmodule DNS.Record do
   @moduledoc """
-  TODO: docs
+  `DNS.Record` is a module and struct definition for serializing and parsing DNS records.
   """
 
   record = Record.extract(:dns_rec, from_lib: "kernel/src/inet_dns.hrl")
@@ -49,13 +49,18 @@ defmodule DNS.Record do
     %{struct | header: header, qdlist: queries, anlist: answers, arlist: additional}
   end
 
-  # TODO: docs
+  @doc """
+  Decodes a binary record into a `DNS.Record` struct.
+  """
+  @spec decode(binary) :: DNS.Record.t()
   def decode(data) do
     {:ok, record} = :inet_dns.decode(data)
     from_record(record)
   end
 
-  # TODO: docs
+  @doc """
+  Serializes a `DNS.Record` into its binary representation.
+  """
   def encode(struct) do
     :inet_dns.encode(to_record(struct))
   end

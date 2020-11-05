@@ -19,6 +19,13 @@ defmodule DNSTest do
     test "responds with error if domain not found" do
       assert {:error, :not_found} = DNS.resolve('uifqourefhoqeirhfqeurfhqehfqoerfiuqe.com')
     end
+
+    test "can query DNS servers via tcp" do
+      {:ok, results} = DNS.resolve("www.google.com", :a, {"8.8.4.4", 53}, :tcp)
+
+      assert is_list(results)
+      assert length(results) > 0
+    end
   end
 
   describe "query" do
