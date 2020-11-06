@@ -20,7 +20,7 @@ defmodule DNS.Mixfile do
   defp deps do
     [
       {:socket, "~> 0.3.13"},
-      {:ex_doc, ">= 0.0.0", only: [:dev]},
+      {:ex_doc, "~> 0.19", only: [:dev]},
       {:earmark, ">= 0.0.0", only: [:dev]},
       {:credo, "~> 0.9.0-rc1", only: [:dev, :test], runtime: false}
     ]
