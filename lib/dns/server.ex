@@ -1,7 +1,6 @@
 defmodule DNS.Server do
   @moduledoc """
-  TODO: docs
-  TODO: convert this to a `GenServer` and do proper cleanup
+  DNS server based on `GenServer`.
   """
 
   @callback handle(DNS.Record.t(), {:inet.ip(), :inet.port()}) :: DNS.Record.t()
@@ -11,7 +10,11 @@ defmodule DNS.Server do
       use GenServer
 
       @doc """
-      TODO: docs
+      Start DNS.Server` server.
+
+      ## Options
+
+      * `:port` - set the port number for the server
       """
       def start_link(port) do
         GenServer.start_link(__MODULE__, [port])

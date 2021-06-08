@@ -1,7 +1,8 @@
 defmodule DNS.ResourceOpt do
   @moduledoc """
-  Elixir struct for RFC2671/6891's OPT RR records.
-  The corresponding record in inet_dns is :dns_rr_opt
+  Struct definition for serializing and parsing RFC2671/6891's OPT RR records.
+
+  The corresponding record in `:inet_dns` is `:dns_rr_opt`.
   """
 
   record = Record.extract(:dns_rr_opt, from_lib: "kernel/src/inet_dns.hrl")

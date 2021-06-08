@@ -1,15 +1,24 @@
 defmodule DNS do
   @doc """
-  Resolves the answer for a DNS query
+  Resolves the answer for a DNS query.
 
-  Example:
+  ## Examples
 
-      iex> DNS.resolve("tungdao.com")                            # {:ok, [{1, 1, 1, 1}]}
-      iex> DNS.resolve("tungdao.com", :txt)                      # {:ok, [['v=spf1 a mx ~all']]}
-      iex> DNS.resolve("tungdao.com", :a, {"8.8.8.8", 53})       # {:ok, [{1, 1, 1, 1}]}
-      iex> DNS.resolve("tungdao.com", :a, {"8.8.8.8", 53}, :tcp) # {:ok, [{1, 1, 1, 1}]}
+      iex> DNS.resolve("tungdao.com")
+      {:ok, [{1, 1, 1, 1}]}
+
+      iex> DNS.resolve("tungdao.com", :txt)
+      {:ok, [['v=spf1 a mx ~all']]}
+
+      iex> DNS.resolve("tungdao.com", :a, {"8.8.8.8", 53})
+      {:ok, [{1, 1, 1, 1}]}
+
+      iex> DNS.resolve("tungdao.com", :a, {"8.8.8.8", 53}, :tcp)
+      {:ok, [{1, 1, 1, 1}]}
+
   """
-  @spec resolve(String.t, atom, {String.t, :inet.port}, :tcp | :udp) :: {atom, :inet.ip} | {atom, list} | {atom, atom}
+  @spec resolve(String.t(), atom, {String.t(), :inet.port()}, :tcp | :udp) ::
+          {atom, :inet.ip()} | {atom, list} | {atom, atom}
   def resolve(domain, type \\ :a, dns_server \\ {"8.8.8.8", 53}, proto \\ :udp) do
     case query(domain, type, dns_server, proto).anlist do
       answers when is_list(answers) and length(answers) > 0 ->
@@ -26,16 +35,29 @@ defmodule DNS do
   end
 
   @doc """
-  Queries the DNS server and returns the result
+  Queries the DNS server and returns the result.
 
-  Examples:
+  ## Examples
 
-      iex> DNS.query("tungdao.com")                                    # <= Queries for A records
-      iex> DNS.query("tungdao.com", :mx)                               # <= Queries for the MX records
-      iex> DNS.query("tungdao.com", :a, { "208.67.220.220", 53})       # <= Queries for A records, using OpenDNS
-      iex> DNS.query("tungdao.com", :a, { "208.67.220.220", 53}, :tcp) # <= Queries for A records, using OpenDNS, with TCP
+  Queries for A records:
+
+      iex> DNS.query("tungdao.com")
+
+  Queries for the MX records:
+
+      iex> DNS.query("tungdao.com", :mx)
+
+  Queries for A records, using OpenDNS:
+
+      iex> DNS.query("tungdao.com", :a, { "208.67.220.220", 53})
+
+
+  Queries for A records, using OpenDNS, with TCP:
+
+      iex> DNS.query("tungdao.com", :a, { "208.67.220.220", 53}, :tcp)
+
   """
-  @spec query(String.t, atom, {String.t, :inet.port}, :tcp | :udp) :: DNS.Record.t
+  @spec query(String.t(), atom, {String.t(), :inet.port()}, :tcp | :udp) :: DNS.Record.t()
   def query(domain, type \\ :a, dns_server \\ {"8.8.8.8", 53}, proto \\ :udp) do
     record = %DNS.Record{
       header: %DNS.Header{rd: true},
@@ -58,15 +80,15 @@ defmodule DNS do
           data
 
         :tcp ->
-          # Set our packet mode to be 2, which indicates there is a 2 byte, big endian length field on our
-          # packets sent and recv'd
-          socket = Socket.TCP.connect! dns_server, timeout: 5_000, packet: 2
+          # Set our packet mode to be 2, which indicates there is a 2 byte, big
+          # endian length field on our packets sent and recv'd
+          socket = Socket.TCP.connect!(dns_server, timeout: 5_000, packet: 2)
 
           :ok = Socket.Stream.send(socket, encoded_record)
 
           data = Socket.Stream.recv!(socket)
 
-          Socket.Stream.close! socket
+          Socket.Stream.close!(socket)
 
           data
       end

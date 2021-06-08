@@ -1,6 +1,6 @@
 defmodule DNS.Record do
   @moduledoc """
-  `DNS.Record` is a module and struct definition for serializing and parsing DNS records.
+  Struct definition for serializing and parsing DNS records.
   """
 
   record = Record.extract(:dns_rec, from_lib: "kernel/src/inet_dns.hrl")

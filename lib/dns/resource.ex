@@ -1,6 +1,6 @@
 defmodule DNS.Resource do
   @moduledoc """
-  TODO: docs
+  Struct definition for serializing and parsing DNS resource.
   """
 
   require Record
@@ -14,7 +14,8 @@ defmodule DNS.Resource do
   @type t :: %__MODULE__{}
 
   @doc """
-  Converts a `DNS.Resource` or `DNS.ResourceOpt` struct to a `:dns_rr` or `:dns_rr_opt` record.
+  Converts a `DNS.Resource` or `DNS.ResourceOpt` struct to a `:dns_rr` or
+  `:dns_rr_opt` record.
   """
   def to_record(resource)
 
@@ -27,7 +28,8 @@ defmodule DNS.Resource do
   end
 
   @doc """
-  Converts a `:dns_rr` or `:dns_rr_opt` record into a `DNS.Resource` or `DNS.ResourceOpt`.
+  Converts a `:dns_rr` or `:dns_rr_opt` record into a `DNS.Resource` or
+  `DNS.ResourceOpt`.
   """
   def from_record(record)
 

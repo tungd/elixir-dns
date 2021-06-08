@@ -1,6 +1,6 @@
 defmodule DNS.Header do
   @moduledoc """
-  TODO: docs
+  Struct definition for serializing and parsing DNS header.
   """
 
   record = Record.extract(:dns_header, from_lib: "kernel/src/inet_dns.hrl")
