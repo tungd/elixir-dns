@@ -30,7 +30,7 @@ Add `:dns` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:dns, "~> 2.2.0"}
+    {:dns, "~> 2.3.0"}
   ]
 end
 ```

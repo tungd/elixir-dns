@@ -2,7 +2,7 @@ defmodule DNS.Mixfile do
   use Mix.Project
 
   @source_url "https://github.com/tungd/elixir-dns"
-  @version "2.2.0"
+  @version "2.3.0"
 
   def project do
     [
