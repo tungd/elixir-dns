@@ -1,34 +1,39 @@
 # DNS
-[![Hex.pm](https://img.shields.io/hexpm/v/dns.svg)](https://hex.pm/packages/dns)
-[![Hex.pm](https://img.shields.io/hexpm/dt/dns.svg)](https://hex.pm/packages/dns)
+
 [![Build Status](https://travis-ci.org/tungd/elixir-dns.svg?branch=master)](https://travis-ci.org/tungd/elixir-dns)
+[![Module Version](https://img.shields.io/hexpm/v/dns.svg)](https://hex.pm/packages/dns)
+[![Hex Docs](https://img.shields.io/badge/hex-docs-lightgreen.svg)](https://hexdocs.pm/dns/)
+[![Total Download](https://img.shields.io/hexpm/dt/dns.svg)](https://hex.pm/packages/dns)
+[![License](https://img.shields.io/hexpm/l/dns.svg)](https://github.com/tungd/elixir-dns/blob/master/LICENSE)
+[![Last Updated](https://img.shields.io/github/last-commit/tungd/elixir-dns.svg)](https://github.com/tungd/elixir-dns/commits/master)
 
-DNS library for Elixir. Currently, the package provides:
+DNS library for Elixir.
 
-- Elixir structs to interface with `inet_dns` module.
-- DNS.Server behavior
+Currently, the package provides:
+
+- Elixir structs to interface with `:inet_dns` module
+- `DNS.Server` behavior
 - DNS client
 
-Note: the `inet_dns` module is considered internal to Erlang and subject to
+Note: the `:inet_dns` module is considered internal to Erlang and subject to
 change. If this happened this library will be updated to accommodate for that,
-but for now `inet_dns` is simple and worked for me.
+but for now `:inet_dns` is simple and worked for me.
 
 ## Installation
 
-The package is available in [Hex](https://hex.pm) and can be installed as:
+Make sure you have the Erlang/OTP source files installed, otherwise the
+compilation will fail with an `{:error, :enoent}` message. On Ubuntu, this can
+be done using `apt-get install erlang-src`.
 
-  1. Make sure you have the Erlang/OTP source files installed,
-     otherwise the compilation will fail with an `{:error, :enoent}`
-     message. On Ubuntu, this can be done using `apt-get install
-     erlang-src`.
+Add `:dns` to your list of dependencies in `mix.exs`:
 
-  2. Add dns to your list of dependencies in `mix.exs`:
-
-        ```elixir
-        def deps do
-          [{:dns, "~> 2.2.0"}]
-        end
-        ```
+```elixir
+def deps do
+  [
+    {:dns, "~> 2.2.0"}
+  ]
+end
+```
 
 ## Usage
 
@@ -90,17 +95,18 @@ end
 
 To run the example server in `iex`:
 
-```
-iex(1)> c "example/test_server.ex"
+```elixir
+iex> c "example/test_server.ex"
 [ServerExample]
-iex(2)> {:ok, server_pid} = ServerExample.start_link 8000
+iex> {:ok, server_pid} = ServerExample.start_link 8000
 Server listening at 8000
 {:ok, #PID<0.180.0>}
-iex(3)> Process.exit(server_pid, :normal)
+iex> Process.exit(server_pid, :normal)
 ```
 
-For more information, see [API Reference](https://hexdocs.pm/dns/2.1.2/api-reference.html)
+## Copyright and License
 
-## License
+Copyright (c) 2016 Tung Dao
 
-BSD-3-Clauses
+This library is released under the BSD 3-Clause "New" or "Revised" License. See
+the [LICENSE.md](./LICENSE.md) file for further details.

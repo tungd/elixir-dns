@@ -1,48 +1,56 @@
 defmodule DNS.Mixfile do
   use Mix.Project
 
+  @source_url "https://github.com/tungd/elixir-dns"
+  @version "2.2.0"
+
   def project do
     [
       app: :dns,
-      version: "2.2.0",
+      version: @version,
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
-      description: description(),
       package: package(),
-      deps: deps()
+      deps: deps(),
+      docs: docs()
     ]
   end
 
   def application do
-    [extra_applications: [:logger]]
+    [
+      extra_applications: [:logger]
+    ]
   end
 
   defp deps do
     [
       {:socket, "~> 0.3.13"},
-      {:ex_doc, "~> 0.19", only: [:dev]},
-      {:earmark, ">= 0.0.0", only: [:dev]},
+      {:ex_doc, ">= 0.0.0", only: [:dev], runtime: false},
       {:credo, "~> 0.9.0-rc1", only: [:dev, :test], runtime: false}
     ]
   end
 
-  defp description do
-    """
-    DNS library for Elixir using `inet_dns` module.
-
-    Note: The `inet_dns` module is considered internal to Erlang and subject to
-    change. If this happened this library will be updated.
-    """
-  end
-
   defp package do
     [
+      description: "DNS library for Elixir using `inet_dns` module.",
       maintainers: ["Tung Dao", "João Veiga"],
-      licenses: ["BSD-3-Clauses"],
+      licenses: ["BSD-3-Clause"],
       links: %{
-        "GitHub" => "https://github.com/tungd/elixir-dns",
-        "API Reference" => "http://hexdocs.pm/dns/2.1.3/api-reference.html"
+        "GitHub" => @source_url
       }
+    ]
+  end
+
+  defp docs do
+    [
+      extras: [
+        "LICENSE.md": [title: "License"],
+        "README.md": [title: "Overview"]
+      ],
+      main: "readme",
+      source_url: @source_url,
+      source_ref: "v#{@version}",
+      formatters: ["html"]
     ]
   end
 end

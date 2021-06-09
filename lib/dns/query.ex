@@ -1,6 +1,6 @@
 defmodule DNS.Query do
   @moduledoc """
-  TODO: docs
+  Struct definition for serializing and parsing DNS query.
   """
 
   record = Record.extract(:dns_query, from_lib: "kernel/src/inet_dns.hrl")
