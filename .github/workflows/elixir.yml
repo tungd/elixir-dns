@@ -15,20 +15,20 @@ jobs:
       matrix:
         otp: ['20.x', '21.x', '22.x']
         elixir: ['1.7.x', '1.8.x', '1.9.x', '1.10.x', '1.11.x', '1.12.x']
-      include:
-        - otp: '19.x'
-          elixir: '1.7.x'
-        - otp: '23.x'
-          elixir: '1.11.x'
-        - otp: '24.x'
-          elixir: '1.12.x'          
-      exclude:
-        - otp: '20.x'
-          elixir: '1.10.x'
-        - otp: '20.x'
-          elixir: '1.11.x'
-        - otp: '20.x'
-          elixir: '1.12.x'
+        include:
+          - otp: '19.x'
+            elixir: '1.7.x'
+          - otp: '23.x'
+            elixir: '1.11.x'
+          - otp: '24.x'
+            elixir: '1.12.x'          
+        exclude:
+          - otp: '20.x'
+            elixir: '1.10.x'
+          - otp: '20.x'
+            elixir: '1.11.x'
+          - otp: '20.x'
+            elixir: '1.12.x'
 
     steps:
     - uses: actions/checkout@v2
