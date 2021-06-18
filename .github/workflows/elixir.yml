@@ -13,27 +13,27 @@ jobs:
     name: OTP ${{matrix.otp}} / Elixir ${{matrix.elixir}}
     strategy:
       matrix:
-        otp: ['20.x', '21.x', '22.x']
-        elixir: ['1.7.x', '1.8.x', '1.9.x', '1.10.x', '1.11.x', '1.12.x']
-        include:
-          - otp: '19.x'
-            elixir: '1.7.x'
-          - otp: '23.x'
-            elixir: '1.11.x'
-          - otp: '24.x'
-            elixir: '1.12.x'          
-        exclude:
-          - otp: '20.x'
-            elixir: '1.10.x'
-          - otp: '20.x'
-            elixir: '1.11.x'
-          - otp: '20.x'
-            elixir: '1.12.x'
+        otp: ['22.x']
+        elixir: ['1.12.x']
+#         otp: ['20.x', '21.x', '22.x']
+#         elixir: ['1.7.x', '1.8.x', '1.9.x', '1.10.x', '1.11.x', '1.12.x']
+#         include:
+#           - otp: '23.x'
+#             elixir: '1.11.x'
+#           - otp: '24.x'
+#             elixir: '1.12.x'          
+#         exclude:
+#           - otp: '20.x'
+#             elixir: '1.10.x'
+#           - otp: '20.x'
+#             elixir: '1.11.x'
+#           - otp: '20.x'
+#             elixir: '1.12.x'
 
     steps:
     - uses: actions/checkout@v2
     - name: Set up Elixir
-      uses: erlef/setup-elixir@885971a72ed1f9240973bd92ab57af8c1aa68f24
+      uses: erlef/setup-beam@v1
       with:
         elixir-version: ${{matrix.elixir}}
         otp-version: ${{matrix.otp}}
