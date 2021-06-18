@@ -33,6 +33,8 @@ jobs:
             elixir: '1.11.x'
           - otp: '20.x'
             elixir: '1.12.x'
+          - otp: '21.x'
+            elixir: '1.12.x'
 
     steps:
     - uses: actions/checkout@v2
