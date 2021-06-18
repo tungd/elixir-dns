@@ -1,6 +1,6 @@
 # DNS
 
-[![Build Status](https://github.com/github/docs/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/tungd/elixir-dns/actions)
+[![Build Status](https://github.com/tungd/elixir-dns/actions/workflows/elixir.yml/badge.svg?branch=main)](https://github.com/tungd/elixir-dns/actions)
 [![Module Version](https://img.shields.io/hexpm/v/dns.svg)](https://hex.pm/packages/dns)
 [![Hex Docs](https://img.shields.io/badge/hex-docs-lightgreen.svg)](https://hexdocs.pm/dns/)
 [![Total Download](https://img.shields.io/hexpm/dt/dns.svg)](https://hex.pm/packages/dns)
