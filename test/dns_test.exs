@@ -10,18 +10,18 @@ defmodule DNSTest do
     end
 
     test "can query custom DNS servers" do
-      {:ok, results} = DNS.resolve("www.google.com", :a, {"8.8.4.4", 53})
+      {:ok, results} = DNS.resolve("www.google.com", :a, nameservers: [{"8.8.4.4", 53}])
 
       assert is_list(results)
       assert length(results) > 0
     end
 
     test "responds with error if domain not found" do
-      assert {:error, :not_found} = DNS.resolve('uifqourefhoqeirhfqeurfhqehfqoerfiuqe.com')
+      assert {:error, :nxdomain} = DNS.resolve('uifqourefhoqeirhfqeurfhqehfqoerfiuqe.com')
     end
 
     test "can query DNS servers via tcp" do
-      {:ok, results} = DNS.resolve("www.google.com", :a, {"8.8.4.4", 53}, :tcp)
+      {:ok, results} = DNS.resolve("www.google.com", :a, usevc: true)
 
       assert is_list(results)
       assert length(results) > 0

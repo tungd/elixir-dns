@@ -1,4 +1,3 @@
 use Mix.Config
 
-config :dns, :server,
-  port: 8053
+config :dns, :server, port: 8053
