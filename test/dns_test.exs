@@ -10,7 +10,7 @@ defmodule DNSTest do
     end
 
     test "can query custom DNS servers" do
-      {:ok, results} = DNS.resolve("www.google.com", :a, {"8.8.4.4", 53})
+      {:ok, results} = DNS.resolve("www.google.com", :a, nameservers: [{"8.8.4.4", 53}])
 
       assert is_list(results)
       assert length(results) > 0
@@ -21,7 +21,7 @@ defmodule DNSTest do
     end
 
     test "can query DNS servers via tcp" do
-      {:ok, results} = DNS.resolve("www.google.com", :a, {"8.8.4.4", 53}, :tcp)
+      {:ok, results} = DNS.resolve("www.google.com", :a, usevc: true)
 
       assert is_list(results)
       assert length(results) > 0
