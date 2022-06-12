@@ -17,7 +17,7 @@ defmodule DNSTest do
     end
 
     test "responds with error if domain not found" do
-      assert {:error, :nxdomain} = DNS.resolve('uifqourefhoqeirhfqeurfhqehfqoerfiuqe.com')
+      assert {:error, _} = DNS.resolve('uifqourefhoqeirhfqeurfhqehfqoerfiuqe.com')
     end
 
     test "can query DNS servers via tcp" do
