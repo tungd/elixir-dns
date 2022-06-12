@@ -30,7 +30,7 @@ Add `:dns` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:dns, "~> 2.3.0"}
+    {:dns, "~> 2.4.0"}
   ]
 end
 ```
@@ -106,7 +106,7 @@ iex> Process.exit(server_pid, :normal)
 
 ## Copyright and License
 
-Copyright (c) 2016 Tung Dao
+Copyright (c) 2016-2022 Tung Dao and contributors.
 
 This library is released under the BSD 3-Clause "New" or "Revised" License. See
 the [LICENSE.md](./LICENSE.md) file for further details.
