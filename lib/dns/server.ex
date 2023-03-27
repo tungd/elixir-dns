@@ -21,19 +21,23 @@ defmodule DNS.Server do
       end
 
       def init([port]) do
-        socket = Socket.UDP.open!(port, as: :binary, mode: :active)
+        {:ok, socket} = :gen_udp.open(port, [{:active, true}, {:mode, :binary}])
         IO.puts("Server listening at #{port}")
 
         # accept_loop(socket, handler)
         {:ok, %{port: port, socket: socket}}
       end
 
-      def handle_info({:udp, client, ip, wtv, data}, state) do
+      def handle_info({:udp, client, ip, port, data}, state) do
         record = DNS.Record.decode(data)
         response = handle(record, client)
-        Socket.Datagram.send!(state.socket, DNS.Record.encode(response), {ip, wtv})
+        :gen_udp.send(state.socket, convert_address(ip), port, DNS.Record.encode(response))
         {:noreply, state}
       end
+
+      defp convert_address(a) when is_binary(a), do: String.to_charlist(a)
+
+      defp convert_address(a), do: a
     end
   end
 end
