@@ -54,7 +54,7 @@ iex> DNS.query("google.com")
   ra: true, rcode: 0, rd: false, tc: false}, nslist: [],
  qdlist: [%DNS.Query{class: :in, domain: 'google.com', type: :a}]}
 
-iex> DNS.resolve("google.com", :a, {"8.8.8.8", 53})
+iex> DNS.resolve("google.com", :a, nameservers: [{"8.8.8.8", 53}])
 ...
 ```
 
